@@ -79,7 +79,9 @@ export default {
   data () {
     return {
       email: '',
-      password: '',
+      password: '',,
+      signupEmail: '',
+      signupPassword: '',
       error: {
         message: ''
       }
