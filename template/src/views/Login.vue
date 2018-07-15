@@ -38,6 +38,37 @@
             </div>
           </form>
         </div>
+        <h5>Or Sign Up</h5>
+        <div class="signUp">
+          <form action="">
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email"
+                         class="form-control"
+                         id="email"
+                         aria-describedby="emailHelp"
+                         placeholder="Input your email"
+                         v-model="signupEmail"
+                         required>
+                </div>
+                <div class="form-group">
+                  <label for="senha">Password</label>
+                  <input type="password"
+                         class="form-control"
+                         id="senha"
+                         placeholder="Insert your password"
+                         v-model="signupPassword"
+                         required>
+                </div>
+                <div class="alert alert-danger"
+                     role="alert"
+                     v-if="error.message"></div>
+            <button type="submit"
+                      class="btn btn-success"
+                      @click="onSubmitSignup">
+                      <i class="fa fa-check"></i> Sign Up</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -63,6 +94,16 @@ export default {
         },
         email: this.email,
         password: this.password
+      })
+    },
+    onSubmitSignup (evt) {
+      evt.preventDefault()
+      this.$store.dispatch('auth/signUp', {
+        error: err => {
+          this.error = err
+        },
+        email: this.signupEmail,
+        password: this.signupPassword
       })
     }
   }
